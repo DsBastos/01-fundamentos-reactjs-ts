@@ -1,6 +1,6 @@
 import { format, formatDistanceToNow } from "date-fns";
 import ptPT from "date-fns/locale/pt";
-import { FormEvent, useState, changeEvent, InvalidEvent } from "react";
+import { FormEvent, useState, ChangeEvent, InvalidEvent } from "react";
 
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
@@ -13,16 +13,17 @@ interface Author {
   avatarUrl: string;
 }
 
+interface Content {
+  type: string;
+  content: string;
+}
+
 interface PostProps {
   author: Author;
   publishedAt: Date;
   content: Content[];
 }
 
-interface Content {
-  type: "paragraph" | "link";
-  content: string;
-}
 
 export function Post({ author, content, publishedAt }: PostProps) {
   const [comments, setComments] = useState(["Post muito bacana, hein?!"]);
@@ -47,7 +48,7 @@ export function Post({ author, content, publishedAt }: PostProps) {
     setNewCommentText("");
   }
 
-  function handleNewCommentChange(event: changeEvent<HTMLTextAreaElement>) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
