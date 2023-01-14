@@ -18,6 +18,7 @@ interface Content {
   content: string;
 }
 
+
 interface PostProps {
   author: Author;
   publishedAt: Date;
